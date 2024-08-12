@@ -47,12 +47,15 @@
 ### Статусы файлов в Git
 
 ```mermaid
-   graph TD;
-      A-->B;
-      A-->C;
-      B-->D;
-      C-->D;
-```
+
+graph LR;
+  untracked -- "git add" --> staged;
+  staged    -- "git commit" --> tracked/comitted;
+  staged    -- "изменения" --> modified;
+  modified  -- "git add" --> staged;
+  tracked/comitted -- "изменения" --> modified;
+
+``` 
 
 * Статусом _untracked_ помечается файл, о существовании которого Git знает, но не следит за изменениями в нём. Этот статус — противоположность _tracked_, в который попадают все файлы, отслеживаемые Git.
 * Файл переходит в статус _staged_ после выполнения _git add_
